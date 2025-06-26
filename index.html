@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- GSAP CDN - Required for the card animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
@@ -35,6 +37,17 @@
             </button>
         </div>
     </header>
+
+    <!-- New Dropping Card HTML Structure -->
+    <div class="animated-promo-card-outer-wrapper">
+        <div class="animated-promo-card">
+            <!-- New inner div for content to handle counter-rotation -->
+            <div class="animated-promo-card-content">
+                <p>Trusted by Millions 🔥</p>
+            </div>
+        </div>
+    </div>
+    <!-- End New Dropping Card HTML Structure -->
 
     <main class="product-page">
         <div class="container">
@@ -140,7 +153,7 @@
                         <ul>
                             <li><b>Red Jasper:</b> Root Chakra - Grounding, stability.</li>
                             <li><b>Carnelian:</b> Sacral Chakra - Creativity, passion.</li>
-                            <li><b>Yellow Aventurine:</b> Solar Plexus Chakra - Confidence, personal power.</li>
+                            <li><b>Yellow Aventurine:</b> Solar Plexis Chakra - Confidence, personal power.</li>
                             <li><b>Green Aventurine:</b> Heart Chakra - Love, compassion.</li>
                             <li><b>Sodalite:</b> Throat Chakra - Communication, self-expression.</li>
                             <li><b>Amethyst:</b> Third Eye Chakra - Intuition, clarity.</li>
@@ -643,6 +656,45 @@
                 setupZoomListeners(); 
                 window.addEventListener('resize', setupZoomListeners); 
             }
+
+            // Auto-trigger the promo card animation on page load
+            const promoOuterWrapper = document.querySelector('.animated-promo-card-outer-wrapper');
+            const promoCard = document.querySelector('.animated-promo-card'); // The actual flipping element
+            const promoCardContent = document.querySelector('.animated-promo-card-content'); // The element for counter-rotation
+            const mainHeader = document.querySelector('.main-header'); // Get the header element
+
+            const promoCardHeight = 40; // The fixed height of the promo card
+            const mainContent = document.querySelector('main.product-page'); // The main content to push down
+
+            // Wait for header to render to get its height correctly
+            window.addEventListener('load', () => {
+                const headerHeight = mainHeader.offsetHeight; // Get actual header height
+
+                // Set outer wrapper to its fixed position right below the header
+                gsap.set(promoOuterWrapper, { top: headerHeight, visibility: 'visible' });
+
+                // Set initial states for the card and its content for the flip-down effect
+                // Card starts rotated 90 degrees UPWARDS from its top edge (hinge point), so it's hidden.
+                gsap.set(promoCard, { rotateX: -90 }); 
+                // Content counter-rotates to be upright even when its parent card is angled.
+                gsap.set(promoCardContent, { rotateX: 90 }); 
+
+                gsap.timeline({ delay: 0.5 }) // Slight delay after page load
+                    .to(promoCard, { // Animate the card to flip into view (90 degrees downwards)
+                        rotateX: 0, // Card ends flat (visible)
+                        duration: 1.2,
+                        ease: "power2.out" // Smooth deceleration
+                    })
+                    .to(promoCardContent, { // Animate content to its final upright position
+                        rotateX: 0, // Content ends flat (upright)
+                        duration: 1.2, // Same duration as the card's flip
+                        ease: "power2.out" // Smooth deceleration
+                    }, "<"); // Start simultaneously with the promoCard animation
+
+                // Adjust main content margin-top once the card is in position
+                // This ensures content starts below the header and the new fixed promo card.
+                gsap.set(mainContent, { marginTop: headerHeight + promoCardHeight });
+            });
         });
     </script>
 

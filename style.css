@@ -146,6 +146,51 @@ img {
     color: var(--text-dark);
 }
 
+/* New Dropping Card Styles */
+.animated-promo-card-outer-wrapper { /* Fixed slot for the card */
+    position: fixed;
+    /* top will be set by JS after header height is known */
+    left: 0;
+    width: 100%; /* Full width as requested */
+    height: 40px; /* The fixed height of the card */
+    overflow: hidden; /* Crucial for containing the initial flipped state */
+    z-index: 995; /* Below header (1000), above product page */
+    display: flex; /* To center the inner card horizontally */
+    justify-content: center;
+    align-items: flex-start; /* IMPORTANT: Aligns the top edge of the card to the top of this wrapper */
+    visibility: hidden; /* Hidden until JS sets its `top` */
+    background-color: transparent; /* No background here, card itself has it */
+}
+
+.animated-promo-card { /* The actual card that flips */
+    width: 100%; /* Take full width of its outer container */
+    height: 100%; /* Take full height of its outer container (40px) */
+    position: relative; /* For 3D transform */
+    perspective: 800px; /* For 3D flip */
+    transform-style: preserve-3d;
+    transform-origin: top center; /* IMPORTANT: Pivot point for the flip (at the top edge) */
+    background-color: var(--primary-color); /* Card's background color */
+    color: white;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0 0 5px 5px; /* Rounded corners only at the bottom */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Soft shadow */
+    overflow: hidden; /* Ensure content doesn't spill out */
+    /* Initial transform for GSAP will be set in JS (rotateX: -90) */
+}
+
+.animated-promo-card-content { /* The element directly containing the text, performs counter-rotation */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: visible; /* Ensure content is always visible regardless of parent's orientation */
+    /* Initial transform for GSAP will be set in JS (rotateX: 90) */
+}
+
+
 /* Breadcrumbs */
 .breadcrumbs {
     font-size: 0.9em;
@@ -178,9 +223,19 @@ img {
 
 /* Product Page Layout */
 .product-page {
-    padding: 40px 0;
+    padding: 0; /* Remove existing padding, controlled by JS margin-top */
     background-color: var(--bg-light);
+    /* margin-top will be added dynamically by JS to make space for the fixed card */
 }
+
+/* Ensure the .container within product-page still has its horizontal padding */
+.product-page .container {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 40px; /* If you want internal padding before product grid, relative to its margin-top */
+    padding-bottom: 40px; /* Keep bottom padding */
+}
+
 
 .product-grid {
     display: grid;
@@ -190,7 +245,7 @@ img {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-    margin-top: 20px;
+    margin-top: 20px; /* Adjust if needed, this is below the main-content's margin-top */
 }
 
 .product-image-gallery {
@@ -1280,24 +1335,39 @@ img {
 
     .related-products-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-        gap: 20px;
     }
-
-    .footer-content {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
-    .trust-badges {
+    .review-summary {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 15px; 
+        gap: 20px;
     }
-    .social-share-buttons {
-        flex-direction: row;
-        align-items: center;
+    .rating-breakdown {
+        width: 100%;
+        max-width: unset;
+    }
+    .footer-content {
+        grid-template-columns: 1fr; 
         text-align: center;
-        gap: 15px;
+    }
+    .about-us-col, .newsletter-col {
+        align-items: center;
+    }
+    .social-icons, .newsletter-form, .payment-icons {
+        justify-content: center;
+    }
+    .payment-icons {
+        font-size: 1.8em;
+    }
+    .payment-icons .payment-icon-img {
+        height: 25px;
+    }
+
+    .main-image-wrapper:hover .main-product-image {
+        opacity: 1; 
+    }
+    .zoom-lens {
+        display: none !important; 
     }
 }
 
@@ -1346,7 +1416,14 @@ img {
     }
 
     .product-page {
-        padding: 20px 0;
+        padding: 0; /* Ensures no padding on the main product-page element */
+    }
+    /* Re-apply horizontal padding to content inside .product-page .container */
+    .product-page .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        /* For mobile, if you want some top space for the content below the card */
+        padding-top: 20px; /* Adjust as needed */
     }
 
     .product-grid {
