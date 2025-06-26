@@ -1453,7 +1453,11 @@ img {
     .overall-rating .rating-number {
         font-size: 2.5em;
     }
+    .thumbnail-images{
+        align-items: center;
+    }
 }
+
 
 /* .product-benefits li {
     opacity: 1 !important;
