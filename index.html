@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven Chakra Bracelet - Evashu Crystals (Redesigned)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="#"><img src="src\fitsize-full-logo_300x300.png" alt="" class="logo-img"></a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#">Shop All</a></li>
+                    <li><a href="#">Bracelets</a></li>
+                    <li><a href="#">Collections</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="#" aria-label="Search"><i class="fas fa-search"></i></a>
+                    <a href="#" aria-label="Cart"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </nav>
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="product-page">
+        <div class="container product-grid">
+            <div class="product-image-gallery">
+                <img src="src\2_a5566128-8f65-4b39-8b47-37277d12c0a3_1024x1024@2x.png" alt="Seven Chakra Bracelet - Front View" class="main-product-image">
+                <div class="thumbnail-images">
+                    <img src="src\2_a5566128-8f65-4b39-8b47-37277d12c0a3_1024x1024@2x.png" alt="Bracelet Thumbnail 1" class="thumbnail active">
+                    <img src="src\7bracwithobsiBENIF_74260ba2-a07f-4a79-bb20-6eee8c31ac00_1024x1024@2x.jpg" alt="Bracelet Thumbnail 2" class="thumbnail">
+                    <img src="src\7bracwithobsiDESCRI_1096d6fc-915a-4e7a-a592-cfb96262_1024x1024@2x.jpg" alt="Bracelet Thumbnail 3" class="thumbnail">
+                    <img src="src\7bracwithobsiTHUMB_629e6237-b992-4bed-a075-4464745aa913_1024x1024@2x.jpg" alt="Bracelet Thumbnail 3" class="thumbnail">
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1 class="product-title scroll-reveal">Seven Chakra Bracelet with Black Obsidian</h1>
+                <div class="product-reviews scroll-reveal">
+                    <span class="stars" aria-label="4.4 out of 5 stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </span>
+                    <span class="review-count">(165 Reviews)</span>
+                </div>
+                <div class="product-price-container scroll-reveal">
+                    <p class="original-price">₹<span id="original-price-value">2,599</span>.00</p>
+                    <p class="product-price">₹<span id="actual-price-value">1,299</span>.00</p>
+                </div>
+
+                <div class="sale-countdown-wrapper scroll-reveal">
+                    <div class="sale-countdown">
+                        <span class="countdown-label">Sale Ends In:</span>
+                        <div class="countdown-timer">
+                            <span id="countdown-minutes">00</span>:<span id="countdown-seconds">00</span>
+                        </div>
+                    </div>
+                    <p class="sales-info">🔥 <span id="products-sold">325</span>+ sold this week!</p>
+                </div>
+
+                <p class="product-description scroll-reveal">
+                    Align your chakras and stay protected with this powerful Seven Chakra Bracelet, featuring genuine Black Obsidian beads.
+                </p>
+                <ul class="product-benefits scroll-reveal">
+                    <li><i class="fas fa-check-circle"></i> Enhances energy flow</li>
+                    <li><i class="fas fa-check-circle"></i> Promotes grounding and positivity</li>
+                    <li><i class="fas fa-check-circle"></i> Supports spiritual healing</li>
+                    <li><i class="fas fa-check-circle"></i> Handcrafted with natural stones</li>
+                </ul>
+
+                <div class="quantity-selector scroll-reveal">
+                    <button class="quantity-btn" id="decrease-quantity">-</button>
+                    <input type="number" class="quantity-input" id="item-quantity" value="1" min="1" max="10">
+                    <button class="quantity-btn" id="increase-quantity">+</button>
+                </div>
+
+                <div class="product-actions scroll-reveal">
+                    <button class="btn btn-add-to-cart">Add to Cart</button>
+                    <button class="btn btn-buy-now" id="main-buy-now-btn">Buy Now</button>
+                </div>
+
+                <div class="product-meta-features scroll-reveal">
+                    <p><i class="fas fa-truck"></i> Cash on Delivery Available</p>
+                    <p><i class="fas fa-sync-alt"></i> Easy 7-Day Returns & Exchange</p>
+                    <p><i class="fas fa-shipping-fast"></i> Free Shipping on all orders</p>
+                </div>
+
+                <div class="product-additional-info scroll-reveal">
+                    <h3>About this Bracelet:</h3>
+                    <p>This beautiful bracelet combines the balancing properties of the seven chakra stones with the powerful protective energies of Black Obsidian. Each stone is carefully selected to support your energy centers, promoting harmony and well-being.</p>
+                    <h3>Stone Properties:</h3>
+                    <ul>
+                        <li>**Red Jasper:** Root Chakra - Grounding, stability.</li>
+                        <li>**Carnelian:** Sacral Chakra - Creativity, passion.</li>
+                        <li>**Yellow Aventurine:** Solar Plexus Chakra - Confidence, personal power.</li>
+                        <li>**Green Aventurine:** Heart Chakra - Love, compassion.</li>
+                        <li>**Sodalite:** Throat Chakra - Communication, self-expression.</li>
+                        <li>**Amethyst:** Third Eye Chakra - Intuition, clarity.</li>
+                        <li>**Clear Quartz:** Crown Chakra - Spiritual connection, wisdom.</li>
+                        <li>**Black Obsidian:** Protection, cleansing negative energy.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="related-products-section container scroll-reveal">
+            <h2>You might also like...</h2>
+            <div class="related-products-grid">
+                <div class="related-product-card">
+                    <a href="#">
+                        <img src="src\related1.png" alt="Related Product 1">
+                        <h3>Amethyst Cluster</h3>
+                        <p class="related-product-price">₹1,850.00</p>
+                        <button class="btn btn-small btn-add-to-cart">Add to Cart</button>
+                    </a>
+                </div>
+                <div class="related-product-card">
+                    <a href="#">
+                        <img src="src\related2.png" alt="Related Product 2">
+                        <h3>Rose Quartz Pendant</h3>
+                        <p class="related-product-price">₹799.00</p>
+                        <button class="btn btn-small btn-add-to-cart">Add to Cart</button>
+                    </a>
+                </div>
+                <div class="related-product-card">
+                    <a href="#">
+                        <img src="src\related3.png" alt="Related Product 3">
+                        <h3>Tiger's Eye Bracelet</h3>
+                        <p class="related-product-price">₹950.00</p>
+                        <button class="btn btn-small btn-add-to-cart">Add to Cart</button>
+                    </a>
+                </div>
+                <div class="related-product-card">
+                    <a href="#">
+                        <img src="src\related4.png" alt="Related Product 4">
+                        <h3>Selenite Tower</h3>
+                        <p class="related-product-price">₹1,100.00</p>
+                        <button class="btn btn-small btn-add-to-cart">Add to Cart</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="customer-reviews-section container scroll-reveal">
+            <h2>Customer Reviews</h2>
+            <div class="review-summary">
+                <div class="overall-rating">
+                    <span class="rating-number">4.4</span> / 5
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>Based on 165 reviews</p>
+                </div>
+                <div class="rating-breakdown">
+                    <div class="rating-row">
+                        <span>5 <i class="fas fa-star"></i></span>
+                        <div class="progress-bar"><div style="width: 70%;"></div></div>
+                        <span>115</span>
+                    </div>
+                    <div class="rating-row">
+                        <span>4 <i class="fas fa-star"></i></span>
+                        <div class="progress-bar"><div style="width: 15%;"></div></div>
+                        <span>25</span>
+                    </div>
+                    <div class="rating-row">
+                        <span>3 <i class="fas fa-star"></i></span>
+                        <div class="progress-bar"><div style="width: 8%;"></div></div>
+                        <span>13</span>
+                    </div>
+                    <div class="rating-row">
+                        <span>2 <i class="fas fa-star"></i></span>
+                        <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        <span>8</span>
+                    </div>
+                    <div class="rating-row">
+                        <span>1 <i class="fas fa-star"></i></span>
+                        <div class="progress-bar"><div style="width: 2%;"></div></div>
+                        <span>4</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-write-review">Write a Review</button>
+
+            <div class="individual-reviews">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">Priya S.</span>
+                        <span class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <p class="review-title">Absolutely beautiful and powerful!</p>
+                    <p class="review-text">"I felt an immediate sense of calm and balance after wearing this bracelet. The stones are vibrant and the obsidian adds a great protective feel. Highly recommend for anyone looking to align their chakras."</p>
+                    <span class="review-date">Reviewed on June 20, 2025</span>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">Rahul K.</span>
+                        <span class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <p class="review-title">Great quality, quick delivery</p>
+                    <p class="review-text">"The bracelet arrived quickly and looks exactly as pictured. The quality of the stones is impressive for the price. I've been wearing it daily and love it."</p>
+                    <span class="review-date">Reviewed on June 15, 2025</span>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">Anjali V.</span>
+                        <span class="review-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </span>
+                    </div>
+                    <p class="review-title">Good value, subtle energy</p>
+                    <p class="review-text">"Beautiful bracelet! The energy is subtle but definitely there. Lost one star because the fit was slightly loose, but overall happy with my purchase."</p>
+                    <span class="review-date">Reviewed on June 10, 2025</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section container scroll-reveal">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">What are the benefits of the Seven Chakra Bracelet?</button>
+                    <div class="faq-answer">
+                        <p>The Seven Chakra Bracelet is designed to balance and energize your body's seven main energy centers, promoting physical, emotional, and spiritual well-being. It helps in enhancing positive energy flow, emotional stability, and overall harmony.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Are the stones real and natural?</button>
+                    <div class="faq-answer">
+                        <p>Yes, all stones used in our Seven Chakra Bracelet are 100% natural and ethically sourced. We ensure high quality and authenticity for all our crystal products.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How do I choose the correct size?</button>
+                    <div class="faq-answer">
+                        <p>Our bracelets are designed to be one-size-fits-most with an adjustable stretch. If you have specific wrist measurements, please refer to our sizing guide on the "About Us" page or contact customer service for assistance.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How do I cleanse and care for my bracelet?</button>
+                    <div class="faq-answer">
+                        <p>To cleanse your bracelet, you can use methods like moonlight charging, smudging with sage, or placing it on a selenite charging plate. Avoid prolonged exposure to water, harsh chemicals, and extreme temperatures to maintain its integrity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="sticky-buy-now-mobile" id="sticky-buy-now-mobile">
+        <button class="btn btn-buy-now-mobile">Buy Now - ₹1,299.00</button>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column about-us-col">
+                <h3>Evashu Crystals</h3>
+                <p>Your destination for authentic crystals and spiritual tools. We believe in empowering lives through the healing energy of nature.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Shop All</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter-col">
+                <h3>Newsletter</h3>
+                <p>Sign up for exclusive offers and updates.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div class="payment-methods">
+                    <h4>Payment Methods</h4>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa" aria-label="Visa"></i>
+                        <i class="fab fa-cc-mastercard" aria-label="Mastercard"></i>
+                        <i class="fab fa-cc-paypal" aria-label="PayPal"></i>
+                        <i class="fab fa-cc-amex" aria-label="American Express"></i>
+                        <img src="src\upi.png" alt="UPI" class="payment-icon-img" aria-label="UPI">
+                        <img src="src\gpay.png" alt="Google Pay" class="payment-icon-img" aria-label="Google Pay">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Evashu Crystals. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Basic JS for hamburger menu (for responsiveness)
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('active');
+        });
+
+        // Basic JS for image gallery
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                document.querySelector('.main-product-image').src = this.src.replace('Thumb', 'Product+Image+');
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Add to Cart button feedback (for main product)
+        document.querySelector('.btn-add-to-cart').addEventListener('click', function() {
+            const button = this;
+            // Only apply feedback to the main add to cart button, not related products
+            if (!button.classList.contains('btn-small')) {
+                button.classList.add('added');
+                button.textContent = 'Added!'; // Change text temporarily
+
+                setTimeout(() => {
+                    button.classList.remove('added');
+                    button.textContent = 'Add to Cart'; // Revert text
+                }, 1000); // Revert after 1 second
+            }
+        });
+
+        // Add to Cart button feedback (for related products - simplified)
+        document.querySelectorAll('.related-product-card .btn-add-to-cart').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent navigation if href="#"
+                const originalText = this.textContent;
+                this.textContent = 'Added!';
+                this.style.backgroundColor = 'var(--success-color)';
+                this.style.color = '#fff';
+
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.backgroundColor = 'var(--primary-color)'; // Revert to primary color or relevant card color
+                    this.style.color = '#fff';
+                }, 800);
+            });
+        });
+
+
+        // Scroll Reveal Logic
+        const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+        const observerOptions = {
+            root: null, // relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the item visible to trigger
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        scrollRevealElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Price Counting Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const originalPriceEl = document.getElementById('original-price-value');
+            const actualPriceEl = document.getElementById('actual-price-value');
+
+            // Store original and target prices as numbers
+            const originalPriceNum = parseInt(originalPriceEl.textContent.replace(/,/g, ''));
+            const actualPriceNum = parseInt(actualPriceEl.textContent.replace(/,/g, ''));
+
+            let currentPrice = originalPriceNum;
+            const duration = 1000; // 1 second
+            const stepTime = 10; // milliseconds
+            const steps = duration / stepTime;
+            const stepDecrement = (originalPriceNum - actualPriceNum) / steps;
+
+            let animationFrameId;
+
+            const animatePrice = () => {
+                currentPrice -= stepDecrement;
+                if (currentPrice <= actualPriceNum) {
+                    actualPriceEl.textContent = actualPriceNum.toLocaleString('en-IN');
+                    cancelAnimationFrame(animationFrameId);
+                    return;
+                }
+                actualPriceEl.textContent = Math.round(currentPrice).toLocaleString('en-IN');
+                animationFrameId = requestAnimationFrame(animatePrice);
+            };
+
+            // Intersection Observer for price animation
+            const priceObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Reset currentPrice to original before starting animation
+                        currentPrice = originalPriceNum;
+                        // Set the displayed price to original instantly for the start of animation
+                        actualPriceEl.textContent = originalPriceNum.toLocaleString('en-IN');
+                        animatePrice();
+                        priceObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the price container is visible
+
+            priceObserver.observe(document.querySelector('.product-price-container'));
+        });
+
+
+        // Live Sale Countdown Timer
+        document.addEventListener('DOMContentLoaded', () => {
+            const countdownMinutesEl = document.getElementById('countdown-minutes');
+            const countdownSecondsEl = document.getElementById('countdown-seconds');
+            const productsSoldEl = document.getElementById('products-sold');
+
+            const initialDuration = 90 * 60; // 1 hour 30 minutes in seconds
+            let timeRemaining = initialDuration;
+
+            function updateCountdown() {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+
+                countdownMinutesEl.textContent = String(minutes).padStart(2, '0');
+                countdownSecondsEl.textContent = String(seconds).padStart(2, '0');
+
+                if (timeRemaining <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownMinutesEl.textContent = '00';
+                    countdownSecondsEl.textContent = '00';
+                    // Optional: You could hide the countdown or display an "Expired" message here
+                } else {
+                    timeRemaining--;
+                }
+            }
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Call immediately to set initial display
+
+            // Simulate products sold increase (optional, for more dynamism)
+            let productsSold = 325;
+            setInterval(() => {
+                productsSold += Math.floor(Math.random() * 3); // Increase by 0-2 randomly
+                productsSoldEl.textContent = productsSold;
+            }, 5000); // Update every 5 seconds
+        });
+
+        // Quantity Selector Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const decreaseBtn = document.getElementById('decrease-quantity');
+            const increaseBtn = document.getElementById('increase-quantity');
+            const quantityInput = document.getElementById('item-quantity');
+
+            decreaseBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue > parseInt(quantityInput.min)) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+
+            increaseBtn.addEventListener('click', () => {
+                let currentValue = parseInt(quantityInput.value);
+                if (currentValue < parseInt(quantityInput.max)) {
+                    quantityInput.value = currentValue + 1;
+                }
+            });
+
+            // Prevent direct manual input if desired, or add validation
+            quantityInput.addEventListener('change', () => {
+                let currentValue = parseInt(quantityInput.value);
+                const min = parseInt(quantityInput.min);
+                const max = parseInt(quantityInput.max);
+
+                if (isNaN(currentValue) || currentValue < min) {
+                    quantityInput.value = min;
+                } else if (currentValue > max) {
+                    quantityInput.value = max;
+                }
+            });
+        });
+
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active'); // Toggle 'active' class
+                const answer = button.nextElementSibling;
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px'; // Expand to content height
+                } else {
+                    answer.style.maxHeight = '0'; // Collapse
+                }
+            });
+        });
+
+        // Sticky Mobile Buy Now Button Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const stickyBtn = document.getElementById('sticky-buy-now-mobile');
+            const mainBuyNowSection = document.getElementById('main-buy-now-btn'); // Assuming this is the element to observe
+
+            if (!mainBuyNowSection || !stickyBtn) return; // Exit if elements not found
+
+            const threshold = 0.5; // When 50% of the main button section is out of view
+            const mobileBreakpoint = 768; // Matches CSS breakpoint for mobile
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Check if current screen width is less than mobile breakpoint
+                    if (window.innerWidth <= mobileBreakpoint) {
+                        if (entry.intersectionRatio < threshold) {
+                            // Main button section is mostly out of view, show sticky button
+                            stickyBtn.classList.add('show');
+                        } else {
+                            // Main button section is in view, hide sticky button
+                            stickyBtn.classList.remove('show');
+                        }
+                    } else {
+                        // On desktop, ensure sticky button is always hidden
+                        stickyBtn.classList.remove('show');
+                    }
+                });
+            }, {
+                root: null, // viewport as the root
+                threshold: threshold,
+                rootMargin: '0px 0px 0px 0px' // Adjust if needed
+            });
+
+            observer.observe(mainBuyNowSection);
+
+            // Also check on resize to handle orientation changes or window resizing
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > mobileBreakpoint) {
+                    stickyBtn.classList.remove('show');
+                } else {
+                    // Re-evaluate visibility based on scroll position if resizing into mobile view
+                    const rect = mainBuyNowSection.getBoundingClientRect();
+                    if (rect.bottom < window.innerHeight * threshold) { // If main button is already off-screen enough
+                         stickyBtn.classList.add('show');
+                    } else {
+                         stickyBtn.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
