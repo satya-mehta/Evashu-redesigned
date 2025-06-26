@@ -1404,6 +1404,10 @@ img {
 }
 
 @media (max-width: 480px) {
+    .breadcrumbs{
+        display: none;
+    }
+
     .product-title {
         font-size: 1.5em;
     }
@@ -1463,14 +1467,6 @@ img {
     opacity: 1 !important;
     transform: none !important;
 } */
-
-/* Remove the previous initial state if you're replacing the JS-driven scroll-reveal for these elements */
-/* You might want to comment out or remove this rule if you're taking over the animation purely with CSS */
-.product-benefits li {
-    /* opacity: 0; */ /* No longer needed if animation handles initial state */
-    /* transform: translateY(30px); */ /* No longer needed */
-    /* transition: opacity 0.5s ease-out, transform 0.5s ease-out; */ /* No longer needed for entry animation */
-}
 
 
 .product-benefits li {
