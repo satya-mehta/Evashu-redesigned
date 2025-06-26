@@ -34,8 +34,8 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--bg-light); /* Use new background light */
-    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+    background-color: var(--bg-light); 
+    overflow-x: hidden; 
 }
 
 .container {
@@ -46,36 +46,36 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--secondary-color); /* Links use secondary blue for trust/energy */
+    color: var(--secondary-color);
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--primary-color); /* Hover links to primary purple */
+    color: var(--primary-color); 
 }
 
 img {
     max-width: 100%;
     height: auto;
-    display: block; /* Removes extra space below images */
+    display: block; 
 }
 
 /* Header */
 .main-header {
-    background-color: #fff; /* Keep header white for crispness */
+    background-color: #fff; 
     border-bottom: 1px solid var(--border-color);
     padding: 5px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    flex-wrap: wrap;
 }
 
 .logo-img{
@@ -115,7 +115,7 @@ img {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--secondary-color); /* Underline uses secondary color */
+    background-color: var(--secondary-color); 
     transition: width 0.3s ease;
 }
 
@@ -134,17 +134,47 @@ img {
 }
 
 .nav-icons a:hover {
-    color: var(--secondary-color); /* Icons use secondary color on hover */
+    color: var(--secondary-color);
 }
 
 .hamburger-menu {
-    display: none; /* Hidden on desktop */
+    display: none; 
     background: none;
     border: none;
     font-size: 1.5em;
     cursor: pointer;
     color: var(--text-dark);
 }
+
+/* Breadcrumbs */
+.breadcrumbs {
+    font-size: 0.9em;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.breadcrumbs li + li::before {
+    content: '/';
+    margin-right: 5px;
+    color: var(--border-color);
+}
+
+.breadcrumbs a {
+    color: var(--text-light);
+}
+
+.breadcrumbs a:hover {
+    color: var(--secondary-color);
+}
+
 
 /* Product Page Layout */
 .product-page {
@@ -154,12 +184,13 @@ img {
 
 .product-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns for image and details */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+    margin-top: 20px;
 }
 
 .product-image-gallery {
@@ -169,22 +200,53 @@ img {
     align-items: center;
 }
 
-.main-product-image {
+.main-image-wrapper {
+    position: relative;
     width: 100%;
     max-width: 500px;
+    overflow: hidden; 
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease; /* Animation for image hover */
+    cursor: zoom-in;
 }
 
-.main-product-image:hover {
-    transform: scale(1.02); /* Slightly zoom in on hover */
+.main-product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
+.main-image-wrapper:hover .main-product-image {
+    opacity: 0;
+}
+
+.zoom-lens {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    display: none;
+    pointer-events: none;
+    border-radius: 5px;
+}
+
+.main-image-wrapper.tapped-zoom .main-product-image {
+    transform: scale(1.5);
+    cursor: zoom-out;
+}
+
+/* MODIFICATION: Thumbnail Stacking Animation */
 .thumbnail-images {
     display: flex;
     gap: 10px;
     margin-top: 10px;
+    position: relative; /* Required for absolute positioning of children */
+    height: 100px; /* Fixed height to contain the animation */
+    width: 100%;
+    justify-content: center; /* Center the final layout */
 }
 
 .thumbnail {
@@ -194,14 +256,49 @@ img {
     border: 2px solid var(--border-color);
     border-radius: 4px;
     cursor: pointer;
-    transition: border-color 0.3s ease, transform 0.2s ease;
+    /* Use absolute positioning for the stacking effect */
+    position: absolute;
+    /* Transition for all animated properties */
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), left 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s ease;
+    /* Initial stacked state with blue glow */
+    left: 50%;
+    box-shadow: 0 0 12px 3px rgba(0, 123, 255, 0.5); 
 }
+
+/* Initial stacked positions for each thumbnail */
+.thumbnail-images .thumbnail:nth-child(1) { transform: translateX(-50%) translateY(0px) rotate(-8deg); z-index: 4; }
+.thumbnail-images .thumbnail:nth-child(2) { transform: translateX(-50%) translateY(0px) rotate(-3deg); z-index: 3; }
+.thumbnail-images .thumbnail:nth-child(3) { transform: translateX(-50%) translateY(0px) rotate(3deg); z-index: 2; }
+.thumbnail-images .thumbnail:nth-child(4) { transform: translateX(-50%) translateY(0px) rotate(8deg); z-index: 1; }
+
+/* Final positions when container gets the .loaded class */
+.thumbnail-images.loaded .thumbnail {
+    transform: translateX(0) translateY(0) rotate(0);
+    box-shadow: none; /* Remove glow after animation */
+}
+/* We manually set the final 'left' position. (80px width + 10px gap = 90px separation) */
+.thumbnail-images.loaded .thumbnail:nth-child(1) { left: calc(50% - 135px); transition-delay: 0s; }
+.thumbnail-images.loaded .thumbnail:nth-child(2) { left: calc(50% - 45px);  transition-delay: 0.1s; }
+.thumbnail-images.loaded .thumbnail:nth-child(3) { left: calc(50% + 45px);  transition-delay: 0.2s; }
+.thumbnail-images.loaded .thumbnail:nth-child(4) { left: calc(50% + 135px); transition-delay: 0.3s; }
 
 .thumbnail:hover,
 .thumbnail.active {
     border-color: var(--primary-color);
     transform: scale(1.05);
 }
+/* Keep glow separate for hover on loaded thumbnails */
+.thumbnail-images.loaded .thumbnail:hover {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    z-index: 10; /* Bring hovered thumbnail to the front */
+    transform: scale(1.1);
+}
+.thumbnail-images.loaded .thumbnail.active {
+    border-color: var(--primary-color);
+    box-shadow: none;
+    transform: scale(1.05);
+}
+
 
 /* Product Details */
 .product-details {
@@ -226,13 +323,12 @@ img {
 }
 
 .product-reviews .stars {
-    color: var(--star-color); /* Star color from variable */
+    color: var(--star-color);
     font-size: 1.1em;
-    /* Initial state for stars animation */
     opacity: 0;
     transform: scale(0.8);
     animation: starsPopIn 0.6s ease-out forwards;
-    animation-delay: 0.3s; /* Delay to appear after page load */
+    animation-delay: 0.3s;
 }
 
 @keyframes starsPopIn {
@@ -260,11 +356,11 @@ img {
 
 .product-price {
     font-family: var(--font-heading);
-    font-size: 2.2em; /* Slightly larger to stand out */
+    font-size: 2.2em;
     font-weight: 700;
-    color: var(--primary-color); /* Highlight price with primary color */
+    color: var(--primary-color);
     margin: 0;
-    display: flex; /* To align currency and value */
+    display: flex;
     align-items: baseline;
 }
 
@@ -285,11 +381,11 @@ img {
     align-items: center;
     margin-bottom: 10px;
     font-size: 1em;
-    color: var(--text-light);
+    color: var(--text-dark); /* Original color */
 }
 
 .product-benefits li .fas {
-    color: var(--tertiary-accent-color); /* Checkmarks use tertiary accent */
+    color: var(--tertiary-accent-color);
     margin-right: 10px;
     font-size: 1.1em;
 }
@@ -300,8 +396,8 @@ img {
     align-items: center;
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    overflow: hidden; /* Ensures buttons don't poke out */
-    width: 120px; /* Fixed width for consistency */
+    overflow: hidden; 
+    width: 120px; 
     margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
@@ -314,34 +410,48 @@ img {
     cursor: pointer;
     color: var(--text-dark);
     transition: background-color 0.2s ease, color 0.2s ease;
-    flex-grow: 0; /* Don't grow */
-    flex-shrink: 0; /* Don't shrink */
+    flex-grow: 0; 
+    flex-shrink: 0; 
+    outline: none; 
 }
 
 .quantity-btn:hover {
     background-color: var(--border-color);
-    color: var(--secondary-color); /* Hover buttons use secondary color */
+    color: var(--secondary-color);
 }
 
 .quantity-btn:active {
-    background-color: var(--secondary-color); /* Active buttons use secondary color */
+    background-color: var(--secondary-color);
     color: #fff;
+}
+
+.quantity-btn:focus-visible { 
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
 }
 
 .quantity-input {
     border: none;
     text-align: center;
-    width: 100%; /* Take up remaining space */
+    width: 100%;
     padding: 10px 0;
     font-size: 1em;
     color: var(--text-dark);
-    background-color: #fff; /* White background for input */
-    -moz-appearance: textfield; /* Hide arrows on Firefox */
+    background-color: #fff;
+    -moz-appearance: textfield;
+    outline: none; 
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
+
+.quantity-input:focus-visible {
+    box-shadow: 0 0 0 2px var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
 
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button {
-    -webkit-appearance: none; /* Hide arrows on Chrome/Safari */
+    -webkit-appearance: none;
     margin: 0;
 }
 
@@ -350,14 +460,13 @@ img {
     display: flex;
     gap: 15px;
     margin-bottom: 40px;
-    align-items: center; /* Align with quantity selector */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    align-items: center;
+    flex-wrap: wrap; 
 }
 
-/* Ensure buttons take full width if quantity selector is on its own line */
 .product-actions .btn {
-    flex-grow: 1; /* Allow them to grow */
-    min-width: 150px; /* Minimum width to prevent squishing */
+    flex-grow: 1; 
+    min-width: 150px;
 }
 
 
@@ -368,19 +477,25 @@ img {
     font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow to transition */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     text-align: center;
+    outline: none; 
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
 }
 
 .btn-add-to-cart {
-    background-color: var(--primary-color); /* Add to cart uses primary color */
+    background-color: var(--primary-color);
     color: #fff;
 }
 
 .btn-add-to-cart:hover {
-    background-color: var(--secondary-color); /* Use secondary color for hover */
-    transform: translateY(-3px); /* More pronounced lift */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Stronger shadow */
+    background-color: var(--secondary-color); 
+    transform: translateY(-3px);
+    box-shadow: 0 0 12px 2px rgba(106, 13, 173, 0.4); 
 }
 
 .btn-buy-now {
@@ -392,13 +507,12 @@ img {
 .btn-buy-now:hover {
     background-color: var(--primary-color);
     color: #fff;
-    transform: translateY(-3px); /* More pronounced lift */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Stronger shadow */
+    transform: translateY(-3px);
+    box-shadow: 0 0 12px 2px rgba(106, 13, 173, 0.4);
 }
 
-/* "Added to Cart" Feedback Animation */
 .btn-add-to-cart.added {
-    background-color: var(--success-color); /* Green for success */
+    background-color: var(--success-color); 
     color: #fff;
     animation: pulseAdded 0.6s ease-out;
 }
@@ -409,19 +523,19 @@ img {
     100% { transform: scale(1); background-color: var(--success-color); }
 }
 
-/* Specific styling for small add to cart buttons in related products */
 .btn-small {
-    padding: 8px 15px; /* Smaller padding */
-    font-size: 0.9em; /* Smaller font size */
-    margin-top: 10px; /* Space from price */
-    flex-grow: 0; /* Don't force growth */
-    align-self: flex-start; /* Align to the start within the card */
+    padding: 8px 15px;
+    font-size: 0.9em; 
+    margin-top: 10px; 
+    flex-grow: 0; 
+    align-self: flex-start;
 }
 
 
 .product-additional-info {
-    border-top: 1px solid var(--border-color);
-    padding-top: 30px;
+    border-top: 0px solid var(--border-color);
+    padding-top: 10px;
+    margin-top: 30px;
 }
 
 .product-additional-info h3 {
@@ -460,7 +574,29 @@ img {
     transform: translateY(0);
 }
 
-/* Live Sale Counter */
+/* MODIFICATION: Staggered Animations & Visibility FIX */
+/* Make containers of staggered items transparent triggers, not animated themselves */
+.product-benefits.scroll-reveal {
+    opacity: 1;
+    transform: none;
+}
+/* Set initial state for the children that WILL be animated */
+.product-benefits li,
+.related-products-grid .related-product-card, 
+.individual-reviews .review-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+/* Set the final state for children when the parent container is active */
+.scroll-reveal.active .product-benefits li,
+.scroll-reveal.active .related-product-card,
+.scroll-reveal.active .review-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MODIFICATION: Reverted Sale Countdown to Previous Design */
 .sale-countdown-wrapper {
     background-color: var(--sale-bg); /* Light cream/yellow background */
     border: 1px solid var(--sale-border);
@@ -499,7 +635,7 @@ img {
 }
 
 .countdown-timer span {
-    font-variant-numeric: tabular-nums; /* Ensures numbers align vertically */
+    font-variant-numeric: tabular-nums;
 }
 
 .sales-info {
@@ -512,7 +648,7 @@ img {
 }
 
 .sales-info .fas {
-    color: #e74c3c; /* Red for fire emoji */
+    color: #e74c3c; 
 }
 
 /* Product Meta Features (COD, Returns, Shipping) */
@@ -532,22 +668,90 @@ img {
     align-items: center;
     gap: 8px;
 }
-/* Icons for meta features */
+
 .product-meta-features p .fas {
-    color: var(--tertiary-accent-color); /* Use tertiary accent for icons */
+    color: var(--tertiary-accent-color); 
     font-size: 1.1em;
 }
 
-/* Related Products Section */
-.related-products-section {
-    margin-top: 60px; /* Space above this section */
-    padding: 30px;
-    background-color: #fff; /* White background for the section */
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+/* Trust Badges */
+.trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 15px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fcfcfc;
+    border-radius: 5px;
 }
 
-.related-products-section h2 {
+.trust-badges .badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95em;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.trust-badges .badge i {
+    color: var(--tertiary-accent-color);
+    font-size: 1.3em;
+}
+
+/* Social Share Buttons */
+.social-share-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 25px;
+    margin-bottom: 30px; 
+    padding: 15px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    justify-content: center;
+}
+
+.social-share-buttons .share-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-right: 5px;
+}
+
+.social-share-buttons a {
+    font-size: 1.5em;
+    color: var(--text-light);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-share-buttons a:hover {
+    transform: translateY(-3px);
+}
+.social-share-buttons .fa-facebook-f:hover { color: #3b5998; }
+.social-share-buttons .fa-twitter:hover { color: #00acee; }
+.social-share-buttons .fa-whatsapp:hover { color: #25d366; }
+.social-share-buttons .fa-envelope:hover { color: #D44638; }
+
+
+/* Sections Styling */
+.related-products-section,
+.customer-reviews-section,
+.faq-section {
+    margin-top: 60px;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.related-products-section h2,
+.customer-reviews-section h2,
+.faq-section h2 {
     font-family: var(--font-heading);
     font-size: 2em;
     font-weight: 600;
@@ -558,43 +762,43 @@ img {
 
 .related-products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
     gap: 25px;
-    justify-content: center; /* Center items if not filling full width */
+    justify-content: center; 
 }
 
 .related-product-card {
-    background-color: var(--bg-light); /* Lighter background for cards */
-    border: 1px solid var(--border-color);
+    background-color: #fff;
+    border: 1px solid #ECECEC;
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    padding: 15px; /* Inner padding */
+    padding: 15px;
 }
 
 .related-product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.12);
 }
 
 .related-product-card a {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Make the link fill the card */
-    color: var(--text-dark); /* Reset link color for internal elements */
+    height: 100%; 
+    color: var(--text-dark);
 }
 
 .related-product-card img {
     width: 100%;
-    height: 180px; /* Fixed height for consistent image size */
+    height: 180px; 
     object-fit: cover;
     border-radius: 4px;
     margin-bottom: 15px;
-    flex-shrink: 0; /* Prevent image from shrinking */
+    flex-shrink: 0;
 }
 
 .related-product-card h3 {
@@ -602,7 +806,7 @@ img {
     font-size: 1.2em;
     font-weight: 600;
     margin-bottom: 8px;
-    flex-grow: 1; /* Allow title to take available space */
+    flex-grow: 1;
 }
 
 .related-product-card .related-product-price {
@@ -614,26 +818,9 @@ img {
 }
 
 /* Customer Reviews Section */
-.customer-reviews-section {
-    margin-top: 60px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
-
-.customer-reviews-section h2 {
-    font-family: var(--font-heading);
-    font-size: 2em;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 30px;
-    text-align: center;
-}
-
 .review-summary {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    flex-wrap: wrap; 
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
@@ -644,7 +831,7 @@ img {
 
 .overall-rating {
     text-align: center;
-    flex-shrink: 0; /* Don't let it shrink */
+    flex-shrink: 0; 
 }
 
 .overall-rating .rating-number {
@@ -669,8 +856,8 @@ img {
 }
 
 .rating-breakdown {
-    flex-grow: 1; /* Allow it to take up available space */
-    max-width: 350px; /* Max width for breakdown to prevent stretching too much */
+    flex-grow: 1;
+    max-width: 350px;
 }
 
 .rating-row {
@@ -683,7 +870,7 @@ img {
 }
 
 .rating-row span:first-child {
-    min-width: 30px; /* Align star count */
+    min-width: 30px; 
     text-align: right;
 }
 
@@ -702,7 +889,7 @@ img {
 
 .progress-bar div {
     height: 100%;
-    background-color: var(--secondary-color); /* Progress in blue */
+    background-color: var(--secondary-color);
     border-radius: 4px;
 }
 
@@ -728,11 +915,17 @@ img {
 }
 
 .review-card {
-    background-color: var(--bg-light);
-    border: 1px solid var(--border-color);
+    background-color: #fff;
+    border: 1px solid #ECECEC;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.12);
 }
 
 .review-header {
@@ -770,34 +963,26 @@ img {
 }
 
 /* FAQ Section */
-.faq-section {
-    margin-top: 60px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
-
-.faq-section h2 {
-    font-family: var(--font-heading);
-    font-size: 2em;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 30px;
-    text-align: center;
-}
-
 .faq-accordion {
     max-width: 800px;
     margin: 0 auto;
 }
 
 .faq-item {
-    border: 1px solid var(--border-color);
+    background-color: #fff;
+    border: 1px solid #ECECEC;
     border-radius: 8px;
     margin-bottom: 15px;
-    overflow: hidden; /* For smooth answer collapse */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.faq-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.12);
+}
+
 
 .faq-question {
     background-color: var(--bg-light);
@@ -817,31 +1002,37 @@ img {
 }
 
 .faq-question::after {
-    content: '\2B'; /* Plus sign */
+    content: '\2B';
     font-size: 1.5em;
     color: var(--secondary-color);
     transition: transform 0.3s ease;
 }
 
 .faq-item.active .faq-question::after {
-    content: '\2212'; /* Minus sign */
-    transform: rotate(180deg); /* Rotate for consistency */
+    content: '\2212'; 
+    transform: rotate(180deg); 
 }
 
 .faq-question:hover {
     background-color: var(--border-color);
 }
 
+.faq-question:focus-visible { 
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+
 .faq-answer {
     padding: 0 25px;
     background-color: #fff;
-    max-height: 0; /* Hidden by default */
+    max-height: 0; 
     overflow: hidden;
     transition: max-height 0.3s ease-out, padding 0.3s ease-out;
 }
 
 .faq-answer p {
-    padding: 15px 0; /* Vertical padding when visible */
+    padding: 15px 0; 
     color: var(--text-light);
     font-size: 1em;
 }
@@ -851,7 +1042,7 @@ img {
     background-color: var(--footer-bg);
     color: var(--footer-text);
     padding: 60px 0 20px 0;
-    margin-top: 80px; /* Space above footer */
+    margin-top: 80px;
 }
 
 .footer-content {
@@ -870,7 +1061,7 @@ img {
     font-family: var(--font-heading);
     font-size: 1.3em;
     font-weight: 600;
-    color: #fff; /* White for headings on dark bg */
+    color: #fff;
     margin-bottom: 20px;
 }
 
@@ -915,7 +1106,7 @@ img {
 
 .newsletter-form {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping of input and button */
+    flex-wrap: wrap; 
     gap: 10px;
     margin-top: 15px;
 }
@@ -928,6 +1119,13 @@ img {
     background-color: rgba(255, 255, 255, 0.1);
     color: #fff;
     font-size: 0.9em;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.newsletter-form input:focus-visible {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px var(--secondary-color);
 }
 
 .newsletter-form input::placeholder {
@@ -944,11 +1142,17 @@ img {
     font-weight: 600;
     font-size: 0.9em;
     transition: background-color 0.3s ease;
+    outline: none;
 }
 
 .newsletter-form button:hover {
     background-color: var(--primary-color);
 }
+.newsletter-form button:focus-visible {
+    outline: 2px solid var(--footer-link-hover);
+    outline-offset: 2px;
+}
+
 
 .payment-methods {
     margin-top: 30px;
@@ -964,7 +1168,7 @@ img {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    font-size: 2.2em; /* Larger icons */
+    font-size: 2.2em;
 }
 
 .payment-icons i {
@@ -973,7 +1177,7 @@ img {
 }
 
 .payment-icons .payment-icon-img {
-    height: 30px; /* Adjust height for image icons */
+    height: 30px;
     width: auto;
     opacity: 0.8;
 }
@@ -992,28 +1196,28 @@ img {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #fff; /* White background */
+    background-color: #fff; 
     padding: 15px 20px;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 999; /* Above other content */
+    z-index: 999; 
     display: flex;
     justify-content: center;
-    transform: translateY(100%); /* Start hidden below screen */
-    transition: transform 0.3s ease-out;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out; 
     opacity: 0;
-    pointer-events: none; /* Disable clicks when hidden */
+    pointer-events: none;
 }
 
 .sticky-buy-now-mobile.show {
-    transform: translateY(0); /* Slide up into view */
+    transform: translateY(0); 
     opacity: 1;
-    pointer-events: auto; /* Enable clicks */
+    pointer-events: auto;
 }
 
 .btn-buy-now-mobile {
     width: 100%;
-    max-width: 400px; /* Max width for the button */
-    background-color: var(--primary-color); /* Use primary color */
+    max-width: 400px; 
+    background-color: var(--primary-color);
     color: #fff;
     font-size: 1.2em;
     padding: 15px 20px;
@@ -1021,23 +1225,28 @@ img {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    outline: none;
 }
 
 .btn-buy-now-mobile:hover {
     background-color: var(--secondary-color);
+}
+.btn-buy-now-mobile:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
 }
 
 
 /* Responsive Design */
 @media (max-width: 992px) {
     .product-grid {
-        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        grid-template-columns: 1fr;
         padding: 20px;
         gap: 30px;
     }
 
     .main-product-image {
-        max-width: 400px; /* Adjust max width for tablet */
+        max-width: 400px;
     }
 
     .product-title {
@@ -1057,25 +1266,38 @@ img {
         margin-right: 15px;
     }
     .product-actions {
-        flex-direction: column; /* Stack buttons and quantity selector */
-        align-items: flex-start; /* Align stacked items to the left */
+        flex-direction: column;
+        align-items: flex-start;
     }
     .quantity-selector {
-        width: 100%; /* Make quantity selector full width */
-        margin-bottom: 15px; /* Add some space below it */
+        width: 100%; 
+        margin-bottom: 15px;
     }
     .product-actions .btn {
-        width: 100%; /* Make buttons full width */
-        min-width: unset; /* Remove min-width restriction */
+        width: 100%;
+        min-width: unset;
     }
 
     .related-products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust grid for smaller screens */
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
         gap: 20px;
     }
 
     .footer-content {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust footer columns */
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .trust-badges {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px; 
+    }
+    .social-share-buttons {
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
     }
 }
 
@@ -1090,11 +1312,11 @@ img {
         width: 100%;
         margin-top: 15px;
         align-items: flex-start;
-        display: none; /* Hidden by default on mobile */
+        display: none; 
     }
 
     .main-nav.active {
-        display: flex; /* Shown when active */
+        display: flex;
     }
 
     .nav-links {
@@ -1117,7 +1339,7 @@ img {
     }
 
     .hamburger-menu {
-        display: block; /* Show hamburger on mobile */
+        display: block; 
         position: absolute;
         right: 20px;
         top: 20px;
@@ -1140,8 +1362,11 @@ img {
     .countdown-timer {
         font-size: 1.4em;
     }
+    .sales-info {
+        font-size: 0.95em;
+    }
     .related-products-grid {
-        grid-template-columns: 1fr 1fr; /* Two columns on smaller mobiles */
+        grid-template-columns: 1fr 1fr; 
     }
     .review-summary {
         flex-direction: column;
@@ -1151,10 +1376,10 @@ img {
     }
     .rating-breakdown {
         width: 100%;
-        max-width: unset; /* Remove max width to allow it to fill */
+        max-width: unset;
     }
     .footer-content {
-        grid-template-columns: 1fr; /* Single column footer on mobile */
+        grid-template-columns: 1fr; 
         text-align: center;
     }
     .about-us-col, .newsletter-col {
@@ -1164,10 +1389,17 @@ img {
         justify-content: center;
     }
     .payment-icons {
-        font-size: 1.8em; /* Smaller payment icons for mobile */
+        font-size: 1.8em;
     }
     .payment-icons .payment-icon-img {
         height: 25px;
+    }
+
+    .main-image-wrapper:hover .main-product-image {
+        opacity: 1; 
+    }
+    .zoom-lens {
+        display: none !important; 
     }
 }
 
@@ -1203,7 +1435,7 @@ img {
         font-size: 0.85em;
     }
     .related-products-grid {
-        grid-template-columns: 1fr; /* Stack related products on very small screens */
+        grid-template-columns: 1fr; 
     }
     .related-products-section h2, .customer-reviews-section h2, .faq-section h2 {
         font-size: 1.6em;
@@ -1220,5 +1452,46 @@ img {
     }
     .overall-rating .rating-number {
         font-size: 2.5em;
+    }
+}
+
+/* .product-benefits li {
+    opacity: 1 !important;
+    transform: none !important;
+} */
+
+/* Remove the previous initial state if you're replacing the JS-driven scroll-reveal for these elements */
+/* You might want to comment out or remove this rule if you're taking over the animation purely with CSS */
+.product-benefits li {
+    /* opacity: 0; */ /* No longer needed if animation handles initial state */
+    /* transform: translateY(30px); */ /* No longer needed */
+    /* transition: opacity 0.5s ease-out, transform 0.5s ease-out; */ /* No longer needed for entry animation */
+}
+
+
+.product-benefits li {
+    /* Ensure elements are initially hidden before the animation starts if needed for fallback */
+    opacity: 0;
+    transform: translateY(30px);
+
+    /* Apply the animation */
+    animation: fadeInSlideUp 0.6s ease-out forwards; /* 0.6s duration, keep final state */
+}
+
+/* Stagger the animations for each list item */
+.product-benefits li:nth-child(1) { animation-delay: 0.1s; } /* Adjust these delays as needed */
+.product-benefits li:nth-child(2) { animation-delay: 0.2s; }
+.product-benefits li:nth-child(3) { animation-delay: 0.3s; }
+.product-benefits li:nth-child(4) { animation-delay: 0.4s; }
+/* Add more as needed for all your list items */
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Matches your original offset */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
